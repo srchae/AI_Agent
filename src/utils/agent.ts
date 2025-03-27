@@ -5,12 +5,12 @@ import typia from "typia";
 
 import { Agentica } from "@agentica/core";
 
-import { DateTool, WeatherTool } from "./tools";
+import { DateTool, InterviewQuestionTool, WeatherTool } from "./tools";
 
-// .env 파일을 불러온다.
+// .env 파일을 env 불러온다.
 dotenv.config();
 
-async function main() {
+async function agent() {
   // OpenAI를 정의
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -40,6 +40,12 @@ async function main() {
         application: typia.llm.application<WeatherTool, "chatgpt">(),
         execute: new WeatherTool(),
       },
+      {
+        name: "Interview Question Tool",
+        protocol: "class",
+        application: typia.llm.application<InterviewQuestionTool, "chatgpt">(),
+        execute: new InterviewQuestionTool(),
+      },
     ],
   });
 
@@ -51,26 +57,29 @@ async function main() {
 
   // Agent와 대화하는 함수
   const conversation = () => {
-    rl.question("User Input (exit: q) : ", async (input) => {
-      // 사용자가 q를 입력하면 대화 종료
-      if (input === "q") {
-        rl.close();
-        return;
+    rl.question(
+      "대화를 시작해보세요! (대화를 종료하려면 exit를 입력) : ",
+      async (input) => {
+        // 사용자가 exit를 입력하면 대화 종료
+        if (input === "exit") {
+          rl.close();
+          return;
+        }
+
+        const answers = await agent.conversate(input);
+
+        // Agent의 답변을 console.log로 출력
+        answers.forEach((answer) => {
+          console.log(JSON.stringify(answer, null, 2));
+        });
+
+        // 대화를 지속할 수 있도록 재귀적 호출
+        conversation();
       }
-
-      const answers = await agent.conversate(input);
-
-      // Agent의 답변을 console.log로 출력
-      answers.forEach((answer) => {
-        console.log(JSON.stringify(answer, null, 2));
-      });
-
-      // 대화를 지속할 수 있도록 재귀적 호출
-      conversation();
-    });
+    );
   };
 
   conversation();
 }
 
-main().catch(console.error);
+agent().catch(console.error);

@@ -50,3 +50,12 @@ export class WeatherTool {
     return this.weather[year];
   }
 }
+
+/**
+ * InterviewQuestionTool : 인터뷰 질문 생성
+ */
+export class InterviewQuestionTool {
+  generateQuestion(input: { topic: string }): string {
+    return `${input.topic}에 대한 면접 질문을 하나 생성해줘`;
+  }
+}
