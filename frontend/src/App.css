@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: "WantedSans", sans-serif;
 }
 
 .App-logo {
@@ -19,13 +20,94 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #60e46a;
 }
 
-.App-link {
-  color: #61dafb;
+.App-header-content {
+  margin-top: 10px;
+  padding: 15px;
+  border-top: 2px solid #60e46a;
+  border-bottom: 2px solid #60e46a;
+}
+
+.App-main-content {
+  padding: 15px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.output-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  gap: 20px;
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding-right: 12px;
+}
+
+.ai-interview-output,
+.human-interview-input {
+  display: inline-block;
+  max-width: 80%;
+  padding: 12px;
+  border-radius: 10px;
+  font-family: "WantedSans", sans-serif;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.human-interview-input {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.ai-interview-output {
+  align-self: flex-start;
+  text-align: left;
+}
+.interview-input {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-family: "WantedSans", sans-serif;
+  font-size: medium;
+  background-color: rgba(255, 255, 255, 0.1); /* 흰색 10% */
+  color: #ffffff;
+}
+
+.interview-input:focus {
+  outline: 2px dashed #60e46a; /* 원하는 초록색 */
+}
+
+.send-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  /* border: 2px solid #60e46a; */
+  /* border-radius: 100px; */
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +117,60 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "WantedSans";
+  src: url("../public/fonts/WantedSans-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+}
+
+.output-wrapper::-webkit-scrollbar {
+  width: 8px; /* 스크롤바 너비 */
+}
+
+.output-wrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.05); /* 흰색, 투명도 5% */
+}
+
+.output-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background-clip: content-box;
+}
+
+.output-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: #45c556;
 }
