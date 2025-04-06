@@ -2,11 +2,7 @@
 module.exports = {
   content: [],
   theme: {
-    extend: {
-      fontFamily: {
-        signature: ["WantedSans", "sans-serif"],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 };
