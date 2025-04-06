@@ -62,6 +62,12 @@ export const InterviewBot = () => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="무엇이든 물어보세요"
+          onKeyDown={(e) => {
+            if (e.nativeEvent.isComposing) return;
+            if (e.key === "Enter") {
+              handleSend();
+            }
+          }}
         />
         <button onClick={handleSend} className="send-button">
           <SendHorizontal stroke="#60e46a" />
