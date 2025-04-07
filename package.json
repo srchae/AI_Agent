@@ -4,14 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc",
-    "start": "NODE_OPTIONS=--no-deprecation node dist/main.js",
-    "start:dev": "cross-env NODE_OPTIONS=--no-deprecation ts-node src/utils/agent.ts",
-    "dev:server": "cross-env NODE_OPTIONS=--no-deprecation ts-node src/utils/agent.ts",
+    "prepare": "ts-patch install",
+    "build:server": "npm run build --prefix server",
+    "start:server": "node server/dist/index.js",
+    "dev:server": "npm run dev --prefix server",
     "dev:client": "npm start --prefix frontend",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "ts-patch install"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
