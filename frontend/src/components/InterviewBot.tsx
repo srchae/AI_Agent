@@ -21,8 +21,8 @@ export const InterviewBot = () => {
       });
 
       const data = await res.json();
-      const answer = data.map((res: any) => res.text).join("\n");
-      console.log("answer::", answer);
+      console.log("data::", data);
+      const answer = data[1]?.text || "정확한 정보를 제공하기가 어려워요";
       setMessages((prev) => [...prev, { type: "bot", text: answer }]);
       setInput("");
     } catch (err) {
